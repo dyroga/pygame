@@ -21,6 +21,13 @@ ANCHO_JUGADOR2 = ANCHO_JUGADOR1
 MARGEN_JUGADOR2 = ANCHO_PANTALLA - MARGEN_JUGADOR - ANCHO_JUGADOR2
 COLOR_JUGADOR2 = COLOR_JUGADOR1
 
+# pelota (rectangulo)
+ALTO_PELOTA = 12
+ANCHO_PELOTA = ALTO_PELOTA
+Y_PELOTA = (ALTO_PANTALLA/2) - (ALTO_PELOTA/2)
+X_PELOTA = (ANCHO_PANTALLA - ANCHO_PELOTA) /2
+COLOR_PELOTA = (100, 250, 115)
+
 #############################################################################
 
 class Pong:
@@ -60,6 +67,11 @@ class Pong:
             # pinto el jugador 2 a la derecha
             jugador2 = pygame.Rect(MARGEN_JUGADOR2, MARGEN, ANCHO_JUGADOR2, ALTO_JUGADOR2)
             pygame.draw.rect(self.pantalla, COLOR_JUGADOR2, jugador2)
+
+            #pintamos la pelota en el centro de la pantalla
+            pelota = pygame.Rect(X_PELOTA, Y_PELOTA, ANCHO_PELOTA, ALTO_PELOTA)
+            pygame.draw.rect(self.pantalla, COLOR_PELOTA, pelota)
+
             # 3 mostrar los cambios en la pantalla
             pygame.display.flip()
 
