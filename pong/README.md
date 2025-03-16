@@ -1,5 +1,7 @@
 # pygame
 vercion del clasico juego pong echo con python y pygame
+
+## como iniciar el juego
  
  
  ## COMO CRERAR UN ENTORNO VIRTUAL
