@@ -37,6 +37,19 @@ class Pelota:
     def pintar (self, pantalla):
         pelota = pygame.Rect(X_PELOTA, Y_PELOTA, ANCHO_PELOTA, ALTO_PELOTA)
         pygame.draw.rect(pantalla, COLOR_PELOTA, pelota)
+
+
+class Jugador:
+    ancho = ANCHO_JUGADOR1
+    alto = ALTO_JUGADOR1
+    def __init__(self, x):
+         self.pos_x = x
+         self.pos_Y = (ALTO_PANTALLA - self.alto) / 2
+
+    def pintar (self, pantalla):
+        jugador1 = pygame.Rect(self.pos_x, self.pos_Y, self.ancho, self.alto)
+        pygame.draw.rect(pantalla, COLOR_JUGADOR2, jugador1)
+        
     
 
 
@@ -45,7 +58,9 @@ class Pong:
         pygame.init()
         self.pantalla = pygame.display.set_mode((ANCHO_PANTALLA, ALTO_PANTALLA))
         self.pelota = Pelota()
-        
+        self.jugador1 = Jugador(MARGEN_JUGADOR)
+        self.jugador2 = Jugador(MARGEN_JUGADOR2)
+
 
     def jugar(self):
 
@@ -72,13 +87,9 @@ class Pong:
 
 
             # 2 pintar los objetos en la posicion correspodiente
-            # pinto el jugador 1 a la izaquierda
-            jugador1 = pygame.Rect(MARGEN_JUGADOR, MARGEN, ANCHO_JUGADOR1, ALTO_JUGADOR1)
-            pygame.draw.rect(self.pantalla, COLOR_JUGADOR1, jugador1)
-
-            # pinto el jugador 2 a la derecha
-            jugador2 = pygame.Rect(MARGEN_JUGADOR2, MARGEN, ANCHO_JUGADOR2, ALTO_JUGADOR2)
-            pygame.draw.rect(self.pantalla, COLOR_JUGADOR2, jugador2)
+            # pinto los jugadores
+            self.jugador1.pintar(self.pantalla)
+            self.jugador2.pintar(self.pantalla)
 
             # pintamos la red
             self.pinto_red()
