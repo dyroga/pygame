@@ -14,7 +14,7 @@ ANCHO_JUGADOR1 = 15
 MARGEN_JUGADOR = 20
 COLOR_JUGADOR1 = (150,  150,    150)
 MARGEN = (ALTO_PANTALLA - ALTO_JUGADOR1)/2
-
+VEL_JUGADOR = 1/2
 # jugador 2
 ALTO_JUGADOR2 = ALTO_JUGADOR1
 ANCHO_JUGADOR2 = ANCHO_JUGADOR1
@@ -54,6 +54,17 @@ class Jugador(Pintable):
 
         
 class Pong:
+    """
+    jugador 1
+
+    arriba      W
+    abajo       S
+
+    jugador 2
+
+    arriba       TECLA UP
+    abajo       TECLA DOWN
+    """
     def __init__(self):
         pygame.init()
         self.pantalla = pygame.display.set_mode((ANCHO_PANTALLA, ALTO_PANTALLA))
@@ -79,6 +90,16 @@ class Pong:
                 if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
                     print("has soltado la tecla escape")
                     salir = True
+            estado_teclas = pygame.key.get_pressed()
+            if estado_teclas[pygame.K_w]:
+                self.jugador1.pos_y -= VEL_JUGADOR
+            if estado_teclas[pygame.K_s]:
+                self.jugador1.pos_y += VEL_JUGADOR
+            if estado_teclas[pygame.K_UP]:
+                self.jugador2.pos_y -= VEL_JUGADOR
+            if estado_teclas[pygame.K_DOWN]:
+                self.jugador2.pos_y += VEL_JUGADOR
+
 
             # renderizar mis objetos
             # 1 borrar la pantalla  
