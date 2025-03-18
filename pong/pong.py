@@ -29,30 +29,30 @@ X_PELOTA = (ANCHO_PANTALLA - ANCHO_PELOTA) /2
 COLOR_PELOTA = (200, 200, 200)
 
 #############################################################################
+class Pintable:
+    def __init__(self, x, y, ancho, alto):
+        self.pos_x = x
+        self.pos_y = y
+        self.ancho = ancho
+        self.alto =  alto
 
-class Pelota:
+    def pintar (self, pantalla):
+        obj = pygame.Rect(self.pos_x, self.pos_y, self.ancho, self.alto)
+        pygame.draw.rect(pantalla, COLOR_JUGADOR1, obj)
+
+
+class Pelota(Pintable):
     def __init__(self):
-        pass
+        super().__init__(X_PELOTA, Y_PELOTA, ANCHO_PELOTA, ALTO_PELOTA)
 
-    def pintar (self, pantalla):
-        pelota = pygame.Rect(X_PELOTA, Y_PELOTA, ANCHO_PELOTA, ALTO_PELOTA)
-        pygame.draw.rect(pantalla, COLOR_PELOTA, pelota)
-
-
-class Jugador:
-    ancho = ANCHO_JUGADOR1
-    alto = ALTO_JUGADOR1
-    def __init__(self, x):
-         self.pos_x = x
-         self.pos_Y = (ALTO_PANTALLA - self.alto) / 2
-
-    def pintar (self, pantalla):
-        jugador1 = pygame.Rect(self.pos_x, self.pos_Y, self.ancho, self.alto)
-        pygame.draw.rect(pantalla, COLOR_JUGADOR2, jugador1)
-        
     
+class Jugador(Pintable):
+    def __init__(self, x):
+         
+         Y = (ALTO_PANTALLA - ALTO_JUGADOR1) / 2
+         super().__init__(x, Y, ANCHO_JUGADOR1, ALTO_JUGADOR1)
 
-
+        
 class Pong:
     def __init__(self):
         pygame.init()
