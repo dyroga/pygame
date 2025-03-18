@@ -76,6 +76,9 @@ class Pong:
                 if event.type == pygame.QUIT:
                     print("has pulsado el boton de cerrar la ventana")
                     salir = True
+                if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
+                    print("has soltado la tecla escape")
+                    salir = True
 
             # renderizar mis objetos
             # 1 borrar la pantalla  
